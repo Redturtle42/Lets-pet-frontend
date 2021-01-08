@@ -1,0 +1,35 @@
+/* Petcards Sidebar */
+
+.sidebar {
+    position: fixed;
+    top: 40vh;
+}
+
+.btn-group-vertical>.btn:not(:last-child):not(.dropdown-toggle) {
+    background-color: rgba(10, 10, 10, 0.8);
+    border-radius: none;
+    border: none;
+    text-transform: lowercase;
+    color: rgb(243, 243, 243);
+    font-family: 'Charmonman', cursive;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    color: black;
+    border: none;
+    background-color: rgba(142, 216, 22, 0.8);
+    border-top-left-radius: none;
+    border-top-right-radius: none;
+    font-family: 'Charmonman', cursive;
+}
+
+.btn-group-vertical>.btn:not(:first-child) {
+    background-color: rgba(10, 10, 10, 0.8);
+    border: none;
+    border-radius: none;
+    border-top-left-radius: none;
+    border-top-right-radius: none;
+    text-transform: lowercase;
+    color: rgb(243, 243, 243);
+    font-family: 'Charmonman', cursive;
+}

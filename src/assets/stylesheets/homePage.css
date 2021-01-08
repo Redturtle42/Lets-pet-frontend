@@ -1,0 +1,71 @@
+/* Home Page */
+
+.home-page-background {
+    background-image: url("../main-background.jpg");
+    background-position: center;
+    background-size: cover;
+    width: 100vw;
+    min-height: 90vh;
+    background-repeat: no-repeat;
+    -moz-box-shadow: inset 0px 150px 100px -30px #FCF6F5FF;
+    -webkit-box-shadow: inset 0px 150px 100px -30px #FCF6F5FF;
+    box-shadow: inset 0px 150px 100px -30px #FCF6F5FF;
+}
+
+.home-page-text {
+    max-width: 1000px;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    line-height: 1.5rem;
+    padding: 30px 10px;
+    text-align: center;
+    margin: 40px auto -40px;
+    background-color: rgba(248, 248, 248, 0.952);
+    border-radius: 5px;
+    -moz-box-shadow: 0px 0px 100px 0px rgba(252, 225, 225, 0.61);
+    -webkit-box-shadow: 0px 0px 100px 0px rgba(252, 225, 225, 0.61);
+    box-shadow: 0px 0px 100px 0px rgba(252, 225, 225, 0.61);
+}
+
+.home-page-text h2 {
+    font-family: 'Charmonman', cursive;
+    color: rgb(219, 30, 30);
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 10px;
+}
+
+.home-page-text p {
+    color: rgb(32, 32, 32);
+    font-size: 0.8rem;
+    text-align: justify;
+    padding: 0;
+    margin: 0;
+}
+
+.home-page-background h1 {
+    font-size: 10vh;
+    line-height: 10vh;
+    text-shadow: 0 0 5px #ffffff, 0 0 15px #ffffff, 0 0 20px #ffffff, 0 0 40px #ffffff, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+    color: #ffffff;
+    font-family: "Sacramento", cursive;
+    text-align: center;
+    padding-top: 80px;
+    letter-spacing: 0.5rem;
+}
+
+/* Media Query */
+
+@media only screen and (min-width: 768px) {
+    .home-page-background {
+        background-image: url("../main-background.jpg");
+    }
+    .home-page-text h2 {
+        font-family: 'Charmonman', cursive;
+        font-size: 1.8rem;
+    }
+    .home-page-text p {
+        color: rgb(32, 32, 32);
+        font-size: 1rem;
+    }
+}
