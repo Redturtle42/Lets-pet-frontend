@@ -1,6 +1,6 @@
-import React from 'react';
-import axios from 'axios';
-import { Form, Button } from 'react-bootstrap';
+import React from "react";
+import axios from "axios";
+import { Form, Button } from "react-bootstrap";
 import env from "react-dotenv";
 
 const URL = env.URL;
@@ -9,7 +9,7 @@ const API_KEY = env.API_KEY;
 class Contact extends React.Component {
   constructor(props) {
     super(props);
-    this.service = this.props.service
+    this.service = this.props.service;
     this.state = {
       name: "",
       email: "",
@@ -22,8 +22,8 @@ class Contact extends React.Component {
       category: null,
       species: null,
       breed: null,
-      petName: null
-    }
+      petName: null,
+    };
     this.toggleSearch = this.toggleSearch.bind(this);
     this.handleCategoryChange = this.handleCategoryChange.bind(this);
     this.handleSpeciesChange = this.handleSpeciesChange.bind(this);
@@ -32,32 +32,38 @@ class Contact extends React.Component {
   }
 
   toggleSearch() {
-    this.setState({ ...this.state, isSearch: !this.state.isSearch })
+    this.setState({ ...this.state, isSearch: !this.state.isSearch });
   }
 
   handleCategoryChange(event) {
     this.setState({
-      ...this.state, category: event.target.value,
-      species: null, breed: null, petName: null
-    })
+      ...this.state,
+      category: event.target.value,
+      species: null,
+      breed: null,
+      petName: null,
+    });
   }
 
   handleSpeciesChange(event) {
     this.setState({
-      ...this.state, species: event.target.value,
-      breed: null, petName: null
-    })
+      ...this.state,
+      species: event.target.value,
+      breed: null,
+      petName: null,
+    });
   }
 
   handleBreedChange(event) {
     this.setState({
-      ...this.state, breed: event.target.value,
-      petName: null
-    })
+      ...this.state,
+      breed: event.target.value,
+      petName: null,
+    });
   }
 
   handleNameChange(event) {
-    this.setState({ ...this.state, petName: event.target.value })
+    this.setState({ ...this.state, petName: event.target.value });
   }
 
   handleChange(event) {
@@ -65,44 +71,56 @@ class Contact extends React.Component {
     if (field === "name") {
       this.setState({ name: event.target.value });
     } else if (field === "email") {
-      this.setState({ email: event.target.value })
+      this.setState({ email: event.target.value });
     } else if (field === "phone") {
-      this.setState({ phone: event.target.value })
+      this.setState({ phone: event.target.value });
     } else if (field === "category") {
-      this.setState({ category: event.target.value })
+      this.setState({ category: event.target.value });
     } else if (field === "species") {
-      this.setState({ species: event.target.value })
+      this.setState({ species: event.target.value });
     } else if (field === "breed") {
-      this.setState({ breed: event.target.value })
+      this.setState({ breed: event.target.value });
     } else if (field === "petName") {
-      this.setState({ petName: event.target.value })
+      this.setState({ petName: event.target.value });
     } else if (field === "message") {
-      this.setState({ message: event.target.value })
+      this.setState({ message: event.target.value });
     }
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.setState({ status: "Sending" });
+    this.setState({ ...this.state, status: "Sending" });
     axios({
       method: "POST",
       url: URL,
       headers: {
-        apikey: API_KEY
+        apikey: API_KEY,
       },
       data: this.state,
-    }).then((response) => {
-      if (response.data.status === "sent") {
-        alert("Message Sent");
-        this.setState({ name: "", email: "", phone: "", category: "", species: "", breed: "", petName: "", message: "", status: "Submit" });
-      } else if (response.data.status === "failed") {
-        console.log(response)
-        alert("Message Failed");
-      }
-    }).catch((err) => {
-      console.log(err.response.status, "Wrong API KEY!")
-      alert(err.response.data)
-    });
+    })
+      .then((response) => {
+        if (response.data.status === "sent") {
+          alert("Message Sent");
+          this.setState({
+            name: "",
+            email: "",
+            phone: "",
+            category: "",
+            species: "",
+            breed: "",
+            petName: "",
+            message: "",
+            status: "Submit",
+          });
+        } else if (response.data.status === "failed") {
+          console.log(response);
+          alert("Message Failed");
+        }
+      })
+      .catch((err) => {
+        console.log(err.response.status, "Wrong API KEY!");
+        alert(err.response.data);
+      });
   }
 
   render() {
@@ -119,7 +137,8 @@ class Contact extends React.Component {
               id="name"
               value={this.state.name}
               onChange={this.handleChange.bind(this)}
-              required />
+              required
+            />
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
@@ -151,28 +170,29 @@ class Contact extends React.Component {
               <Form.Control
                 as="select"
                 name="categorySelect"
-                defaultValue={this.state.category || 'All categories'}
+                defaultValue={this.state.category || "All categories"}
                 onChange={this.handleCategoryChange}
                 id="category"
-                value={this.state.category}
-              >
-                <option >All categories</option>
-                {this.state.categoryList.map(
-                  item => <option value={item}>{item}</option>
-                )}
+                value={this.state.category}>
+                <option>All categories</option>
+                {this.state.categoryList.map((item) => (
+                  <option value={item}>{item}</option>
+                ))}
               </Form.Control>
               <div className={this.state.category ? null : "hidden"}>
                 <Form.Label>Species</Form.Label>
                 <Form.Control
                   as="select"
                   name="speciesSelect"
-                  value={this.state.species || 'All Species'}
+                  value={this.state.species || "All Species"}
                   onChange={this.handleSpeciesChange}
                   id="species">
-                  <option >All Species</option>
-                  {this.service.getSpeciesByCategory(this.state.category).map(
-                    item => <option value={item}>{item}</option>
-                  )}
+                  <option>All Species</option>
+                  {this.service
+                    .getSpeciesByCategory(this.state.category)
+                    .map((item) => (
+                      <option value={item}>{item}</option>
+                    ))}
                 </Form.Control>
               </div>
               <div className={this.state.species ? null : "hidden"}>
@@ -180,14 +200,15 @@ class Contact extends React.Component {
                 <Form.Control
                   as="select"
                   name="breedSelect"
-                  value={this.state.breed || 'All Breed'}
+                  value={this.state.breed || "All Breed"}
                   onChange={this.handleBreedChange}
                   id="breed">
                   <option>All Breed</option>
-                  {this.service.getBreedBySpecies(this.state.species)
-                    .map(
-                      item => <option value={item}>{item}</option>
-                    )}
+                  {this.service
+                    .getBreedBySpecies(this.state.species)
+                    .map((item) => (
+                      <option value={item}>{item}</option>
+                    ))}
                 </Form.Control>
               </div>
               {!this.state.breed ? null : (
@@ -199,13 +220,20 @@ class Contact extends React.Component {
                     value={this.state.petName}
                     onChange={this.handleNameChange}
                     id="petName">
-                    <option value={null} disabled selected hidden>Choose the name of the pet...</option>
-                    {this.service.getNamesByBreedAndSpecies(this.state.breed, this.state.species)
-                      .map(
-                        item => <option value={item}>{item}</option>
-                      )}
+                    <option value={null} disabled selected hidden>
+                      Choose the name of the pet...
+                    </option>
+                    {this.service
+                      .getNamesByBreedAndSpecies(
+                        this.state.breed,
+                        this.state.species
+                      )
+                      .map((item) => (
+                        <option value={item}>{item}</option>
+                      ))}
                   </Form.Control>
-                </div>)}
+                </div>
+              )}
             </div>
           </Form.Group>
           <Form.Group>
@@ -216,12 +244,15 @@ class Contact extends React.Component {
               id="message"
               value={this.state.message}
               onChange={this.handleChange.bind(this)}
-              required />
+              required
+            />
           </Form.Group>
-          <Button variant="outline-light large" block type="submit">{buttonText}</Button>
+          <Button variant="outline-light large" block type="submit">
+            {buttonText}
+          </Button>
         </Form>
-      </div >
-    )
+      </div>
+    );
   }
 }
 
