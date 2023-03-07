@@ -3,8 +3,8 @@ import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 import env from "react-dotenv";
 
-const URL = env.URL;
-const API_KEY = env.API_KEY;
+const URL = env.REACT_APP_URL;
+const API_KEY = env.REACT_APP_API_KEY;
 
 class Contact extends React.Component {
   constructor(props) {
@@ -173,7 +173,8 @@ class Contact extends React.Component {
                 defaultValue={this.state.category || "All categories"}
                 onChange={this.handleCategoryChange}
                 id="category"
-                value={this.state.category}>
+                value={this.state.category}
+              >
                 <option>All categories</option>
                 {this.state.categoryList.map((item) => (
                   <option value={item}>{item}</option>
@@ -186,7 +187,8 @@ class Contact extends React.Component {
                   name="speciesSelect"
                   value={this.state.species || "All Species"}
                   onChange={this.handleSpeciesChange}
-                  id="species">
+                  id="species"
+                >
                   <option>All Species</option>
                   {this.service
                     .getSpeciesByCategory(this.state.category)
@@ -202,7 +204,8 @@ class Contact extends React.Component {
                   name="breedSelect"
                   value={this.state.breed || "All Breed"}
                   onChange={this.handleBreedChange}
-                  id="breed">
+                  id="breed"
+                >
                   <option>All Breed</option>
                   {this.service
                     .getBreedBySpecies(this.state.species)
@@ -219,7 +222,8 @@ class Contact extends React.Component {
                     name="petName"
                     value={this.state.petName}
                     onChange={this.handleNameChange}
-                    id="petName">
+                    id="petName"
+                  >
                     <option value={null} disabled selected hidden>
                       Choose the name of the pet...
                     </option>
